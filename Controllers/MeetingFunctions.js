@@ -14,7 +14,7 @@ const CreateMeeting = async (req, res) => {
     });
     for (let i = 0; i < req.body.MeetingMembers.length; i++) {
       userSchema.findOneAndUpdate(
-        { _id: req.body.MeetingCreator[i] },
+        { _id: req.body.MeetingMembers[i] },
         { $push: { pendingRequests: meeting._id, MeetingAlloted: meeting._id } }
       );
     }
