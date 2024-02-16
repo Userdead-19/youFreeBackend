@@ -12,10 +12,12 @@ const CreateMeeting = async (req, res) => {
       MeetingTimeZone: req.body.MeetingTimeZone,
       MeetingLink: req.body.MeetingLink,
     });
-    userSchema.findOneAndUpdate(
-      { username: req.body.MeetingCreator },
-      { $push: { pendingRequests: meeting._id, MeetingAlloted: meeting._id } }
-    );
+    for (let i = 0; i < req.body.MeetingMembers.length; i++) {
+      userSchema.findOneAndUpdate(
+        { username: req.body.MeetingCreator[i] },
+        { $push: { pendingRequests: meeting._id, MeetingAlloted: meeting._id } }
+      );
+    }
     const savedMeeting = await meeting.save();
     res.json(savedMeeting);
   } catch (error) {
