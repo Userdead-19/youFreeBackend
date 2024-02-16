@@ -7,7 +7,7 @@ const meetingTimeResponseSchema = new mongoose.Schema(
       ref: "Meeting",
     },
     user: {
-      type: mongoose.Schema.Types.ObjectId,
+      type: String,
       ref: "User",
     },
     meetingTime: {
