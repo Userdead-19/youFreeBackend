@@ -4,7 +4,7 @@ const {
   CreateOrganisation,
   GetOrganisation,
   GetOrganisationMembers,
-} = require("../Controllers/OrganisationFunctions");
+} = require("../Controllers/OrganisationFunction");
 
 Router.post("/createOrganisation", CreateOrganisation);
 
