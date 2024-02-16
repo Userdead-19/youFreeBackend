@@ -26,18 +26,8 @@ const meetingSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    MeetingMembers: [
-      {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "User",
-      },
-    ],
-    MeetingTimeResponses: [
-      {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "MeetingTimeResponse",
-      },
-    ],
+    MeetingMembers: [],
+    MeetingTimeResponses: [],
     MeetingCreator: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
