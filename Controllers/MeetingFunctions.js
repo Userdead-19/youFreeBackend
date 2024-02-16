@@ -2,6 +2,7 @@ const meetingSchema = require("../models/MeetingModal");
 const userSchema = require("../models/UserModal");
 const CreateMeeting = async (req, res) => {
   try {
+    console.log(req.body);
     const meeting = new meetingSchema({
       meetingName: req.body.meetingName,
       MeetingDescription: req.body.MeetingDescription,
