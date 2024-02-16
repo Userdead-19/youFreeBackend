@@ -11,3 +11,5 @@ const organisationSchema = new mongoose.Schema({
   },
   Members: [],
 });
+
+module.exports = mongoose.model("Organisation", organisationSchema);
