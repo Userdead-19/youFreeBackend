@@ -22,6 +22,10 @@ const meetingSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    MeetingLink: {
+      type: String,
+      required: true,
+    },
     MeetingMembers: [
       {
         type: mongoose.Schema.Types.ObjectId,

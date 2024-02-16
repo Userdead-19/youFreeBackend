@@ -11,6 +11,7 @@ const CreateMeeting = async (req, res) => {
       MeetingCreator: req.body.MeetingCreator,
       MeetingStatus: req.body.MeetingStatus,
       MeetingTimeZone: req.body.MeetingTimeZone,
+      MeetingLink: req.body.MeetingLink,
     });
     const savedMeeting = await meeting.save();
     res.json(savedMeeting);

@@ -7,6 +7,7 @@ const CreateUser = async (req, res) => {
       email: req.body.email,
       password: req.body.password,
       role: req.body.role,
+      calenderId: req.body.calenderId,
     });
     const savedUser = await user.save();
     res.json(savedUser);
