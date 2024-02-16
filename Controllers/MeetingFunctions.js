@@ -60,11 +60,23 @@ const UpdateMeeting = async (req, res) => {
 const DeleteMeeting = async (req, res) => {
   try {
     const { meetingName } = req.params;
+    const meetingmain = await meetingSchema.findOne({
+      meetingName: meetingName,
+    });
     const meeting = await meetingSchema.findOneAndDelete({
       meetingName: meetingName,
     });
-    userSchema.findOneAndDelete({ MeetingAlloted: meeting._id });
-    userSchema.findOneAndDelete({ pendingRequests: meeting._id });
+    for (let i = 0; i < meeting.MeetingMembers.length; i++) {
+      await userSchema.findOneAndUpdate(
+        { _id: meeting.MeetingMembers[i] },
+        {
+          $pull: {
+            MeetingAlloted: meetingmain._id,
+            pendingRequests: meetingmain._id,
+          },
+        }
+      );
+    }
     res.json(meeting);
   } catch (error) {
     res.status(400).send(error);
