@@ -26,27 +26,10 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    pendingRequests: [
-      {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Meeting",
-      },
-    ], // array of datesPending
-    MeetingAlloted: [
-      {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Meeting",
-      },
-    ],
-    SheduleCreated: [
-      { type: mongoose.Schema.Types.ObjectId, ref: "MeetingTimeResponse" },
-    ],
-    Oraganisations: [
-      {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Organisation",
-      },
-    ],
+    pendingRequests: [], // array of datesPending
+    MeetingAlloted: [],
+    SheduleCreated: [],
+    Oraganisations: [],
     calenderId: {
       type: String,
       required: true,
