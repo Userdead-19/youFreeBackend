@@ -1,5 +1,5 @@
 const meetingSchema = require("../models/MeetingModal");
-
+const userSchema = require("../models/UserModal");
 const CreateMeeting = async (req, res) => {
   try {
     const meeting = new meetingSchema({
@@ -13,6 +13,10 @@ const CreateMeeting = async (req, res) => {
       MeetingTimeZone: req.body.MeetingTimeZone,
       MeetingLink: req.body.MeetingLink,
     });
+    userSchema.findOneAndUpdate(
+      { username: req.body.MeetingCreator },
+      { $push: { pendingRequests: meeting._id, MeetingAlloted: meeting._id } }
+    );
     const savedMeeting = await meeting.save();
     res.json(savedMeeting);
   } catch (error) {
@@ -57,6 +61,8 @@ const DeleteMeeting = async (req, res) => {
     const meeting = await meetingSchema.findOneAndDelete({
       meetingName: meetingName,
     });
+    userSchema.findOneAndDelete({ MeetingAlloted: meeting._id });
+    userSchema.findOneAndDelete({ pendingRequests: meeting._id });
     res.json(meeting);
   } catch (error) {
     res.status(400).send(error);
