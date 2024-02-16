@@ -9,7 +9,6 @@ const CreateMeeting = async (req, res) => {
       MeetingEndTime: req.body.MeetingEndTime,
       MeetingMembers: req.body.MeetingMembers,
       MeetingCreator: req.body.MeetingCreator,
-      MeetingStatus: req.body.MeetingStatus,
       MeetingTimeZone: req.body.MeetingTimeZone,
       MeetingLink: req.body.MeetingLink,
     });
