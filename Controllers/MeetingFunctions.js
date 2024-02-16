@@ -13,7 +13,7 @@ const CreateMeeting = async (req, res) => {
       MeetingTimeZone: req.body.MeetingTimeZone,
     });
     const savedMeeting = await meeting.save();
-    res.send(savedMeeting);
+    res.json(savedMeeting);
   } catch (error) {
     res.status(400).send(error);
   }
@@ -23,7 +23,7 @@ const GetMeeting = async (req, res) => {
   try {
     const { meetingName } = req.params;
     const meeting = await meetingSchema.find({ meetingName: meetingName });
-    res.send(meeting);
+    res.json(meeting);
   } catch (error) {
     res.status(400).send(error);
   }
@@ -32,7 +32,7 @@ const GetMeeting = async (req, res) => {
 const GetAllMeetings = async (req, res) => {
   try {
     const meetings = await meetingSchema.find();
-    res.send(meetings);
+    res.json(meetings);
   } catch (error) {
     res.status(400).send(error);
   }
@@ -44,7 +44,7 @@ const UpdateMeeting = async (req, res) => {
     const meeting = await meetingSchema.findOneAndUpdate({
       meetingName: meetingName,
     });
-    res.send(meeting);
+    res.json(meeting);
   } catch (error) {
     res.status(400).send(error);
   }
@@ -56,7 +56,7 @@ const DeleteMeeting = async (req, res) => {
     const meeting = await meetingSchema.findOneAndDelete({
       meetingName: meetingName,
     });
-    res.send(meeting);
+    res.json(meeting);
   } catch (error) {
     res.status(400).send(error);
   }

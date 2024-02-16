@@ -9,7 +9,7 @@ const CreateUser = async (req, res) => {
       role: req.body.role,
     });
     const savedUser = await user.save();
-    res.send(savedUser);
+    res.json(savedUser);
   } catch (error) {
     res.status(400).send(error);
   }
@@ -19,7 +19,7 @@ const GetUser = async (req, res) => {
   try {
     const { username } = req.params;
     const user = await userSchema.find({ username: username });
-    res.send(user);
+    res.json(user);
   } catch (error) {
     res.status(400).send(error);
   }
@@ -28,7 +28,7 @@ const GetUser = async (req, res) => {
 const GetAllUsers = async (req, res) => {
   try {
     const users = await userSchema.find();
-    res.send(users);
+    res.json(users);
   } catch (error) {
     res.status(400).send(error);
   }

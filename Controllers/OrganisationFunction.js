@@ -8,7 +8,7 @@ const CreateOrganisation = async (req, res) => {
       Members: req.body.organisationMembers,
     });
     const savedOrganisation = await organisation.save();
-    res.send(savedOrganisation);
+    res.json(savedOrganisation);
   } catch (error) {
     res.status(400).send(error);
   }
@@ -20,7 +20,7 @@ const GetOrganisation = async (req, res) => {
     const organisation = await Organisation.find({
       organisationName: organisationName,
     });
-    res.send(organisation);
+    res.json(organisation);
   } catch (error) {
     res.status(400).send(error);
   }
@@ -32,7 +32,7 @@ const GetOrganisationMembers = async (req, res) => {
     const organisation = await Organisation.find({
       organisationName: organisationName,
     });
-    res.send(organisation[0].Members);
+    res.json(organisation[0].Members);
   } catch (error) {
     res.status(400).send(error);
   }

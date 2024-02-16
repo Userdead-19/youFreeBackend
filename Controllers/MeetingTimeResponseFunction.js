@@ -8,7 +8,7 @@ const CreateMeetingTimeResponse = async (req, res) => {
       meetingTime: req.body.meetingTime,
     });
     const savedMeetingTimeResponse = await meetingTimeResponse.save();
-    res.send(savedMeetingTimeResponse);
+    res.json(savedMeetingTimeResponse);
   } catch (error) {
     res.status(400).send(error);
   }
@@ -20,7 +20,7 @@ const GetMeetingTimeResponse = async (req, res) => {
     const meetingTimeResponse = await MeetingTimeResponse.find({
       user: user,
     });
-    res.send(meetingTimeResponse);
+    res.json(meetingTimeResponse);
   } catch (error) {
     res.status(400).send(error);
   }
