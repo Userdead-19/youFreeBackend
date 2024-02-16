@@ -10,6 +10,7 @@ const CreateMeeting = async (req, res) => {
       MeetingMembers: req.body.MeetingMembers,
       MeetingCreator: req.body.MeetingCreator,
       MeetingStatus: req.body.MeetingStatus,
+      MeetingTimeZone: req.body.MeetingTimeZone,
     });
     const savedMeeting = await meeting.save();
     res.send(savedMeeting);
@@ -28,16 +29,43 @@ const GetMeeting = async (req, res) => {
   }
 };
 
-const GetAllUserMeetings = async (req, res) => {
+const GetAllMeetings = async (req, res) => {
   try {
-    const { MeetingCreator } = req.params;
-    const meetings = await meetingSchema.find({
-      MeetingCreator: MeetingCreator,
-    });
+    const meetings = await meetingSchema.find();
     res.send(meetings);
   } catch (error) {
     res.status(400).send(error);
   }
 };
 
-module.exports = { CreateMeeting, GetMeeting, GetAllUserMeetings };
+const UpdateMeeting = async (req, res) => {
+  try {
+    const { meetingName } = req.params;
+    const meeting = await meetingSchema.findOneAndUpdate({
+      meetingName: meetingName,
+    });
+    res.send(meeting);
+  } catch (error) {
+    res.status(400).send(error);
+  }
+};
+
+const DeleteMeeting = async (req, res) => {
+  try {
+    const { meetingName } = req.params;
+    const meeting = await meetingSchema.findOneAndDelete({
+      meetingName: meetingName,
+    });
+    res.send(meeting);
+  } catch (error) {
+    res.status(400).send(error);
+  }
+};
+
+module.exports = {
+  CreateMeeting,
+  GetMeeting,
+  GetAllMeetings,
+  UpdateMeeting,
+  DeleteMeeting,
+};

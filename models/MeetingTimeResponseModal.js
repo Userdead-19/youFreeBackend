@@ -1,15 +1,22 @@
 const mongoose = require("mongoose");
 
-const meetingTimeResponseSchema = new mongoose.Schema({
-  meeting: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "Meeting",
+const meetingTimeResponseSchema = new mongoose.Schema(
+  {
+    meeting: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Meeting",
+    },
+    user: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+    },
+    meetingTime: {
+      type: String,
+      required: true,
+    },
   },
-  user: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "User",
-  },
-});
+  { timestamps: true }
+);
 
 module.exports = mongoose.model(
   "MeetingTimeResponse",

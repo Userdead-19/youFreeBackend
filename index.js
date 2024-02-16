@@ -4,6 +4,9 @@ const morgan = require("morgan");
 const jwt = require("jsonwebtoken");
 const passport = require("passport");
 const userRouter = require("./routes/UserRoutes");
+const meetingRouter = require("./routes/MeetingsRouter");
+const meetingTimeRouter = require("./routes/MeetingTimeRoutes");
+const organisationRouter = require("./routes/OrganisationRoutes");
 
 const app = express();
 app.use(morgan("dev"));
@@ -24,6 +27,9 @@ app.get("/", (req, res) => {
 });
 
 app.use("/user", userRouter);
+app.use("/meeting", meetingRouter);
+app.use("/meetingTime", meetingTimeRouter);
+app.use("/organisation", organisationRouter);
 
 app.listen(3000, () => {
   console.log("Server is running on port 3000");

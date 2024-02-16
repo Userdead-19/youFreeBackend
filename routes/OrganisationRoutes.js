@@ -11,3 +11,5 @@ Router.post("/createOrganisation", CreateOrganisation);
 Router.get("/getOrganisation/:organisationName", GetOrganisation);
 
 Router.get("/getOrganisationMembers/:organisationName", GetOrganisationMembers);
+
+module.exports = Router;
