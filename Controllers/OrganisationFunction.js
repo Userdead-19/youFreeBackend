@@ -52,6 +52,20 @@ const updateOrganisationMembers = async (req, res) => {
   }
 };
 
+const getUserOrganisations = async (req, res) => {
+  try {
+    const { userId } = req.params;
+    const organisation = await Organisation.find({
+      Members: {
+        $in: [userId],
+      },
+    });
+    res.json(organisation);
+  } catch (error) {
+    res.status(400).send(error);
+  }
+};
+
 module.exports = {
   CreateOrganisation,
   GetOrganisation,

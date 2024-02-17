@@ -13,6 +13,8 @@ Router.get("/getOrganisation/:organisationName", GetOrganisation);
 
 Router.get("/getOrganisationMembers/:organisationName", GetOrganisationMembers);
 
+Router.get("/getUserOrganisations/:userId", GetOrganisationMembers);
+
 Router.get(
   "/updateOrganisationMembers/:organisationName",
   updateOrganisationMembers
