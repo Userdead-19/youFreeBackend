@@ -18,7 +18,6 @@ const meetingSchema = new mongoose.Schema(
     },
     MeetingDate: {
       type: String,
-      required: true,
     },
     MeetingTimeZone: {
       type: String,
