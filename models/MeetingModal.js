@@ -12,9 +12,11 @@ const meetingSchema = new mongoose.Schema(
     },
     MeetingStartTime: {
       type: String,
-      required: true,
     },
     MeetingEndTime: {
+      type: String,
+    },
+    MeetingDate: {
       type: String,
       required: true,
     },
