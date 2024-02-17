@@ -90,8 +90,9 @@ const DeleteMeeting = async (req, res) => {
 
 const getUserMeeting = async (req, res) => {
   try {
-    const { userid } = req.params;
-    const user = await userSchema.findOne({ _id: userid });
+    const { userId } = req.params;
+    console.log(userId);
+    const user = await userSchema.findOne({ _id: userId });
     console.log(user);
     let meetings = [];
 
