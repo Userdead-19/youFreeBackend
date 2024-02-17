@@ -1,6 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const morgan = require("morgan");
+const cors = require("cors");
 const jwt = require("jsonwebtoken");
 const passport = require("passport");
 const userRouter = require("./routes/UserRoutes");
@@ -11,6 +12,7 @@ const organisationRouter = require("./routes/OrganisationRoutes");
 const app = express();
 app.use(morgan("dev"));
 app.use(express.json());
+app.use(cors());
 
 mongoose
   .connect("mongodb+srv://admin:alo4567@cluster0.7qx0l5f.mongodb.net/", {
@@ -31,6 +33,6 @@ app.use("/meeting", meetingRouter);
 app.use("/meetingTime", meetingTimeRouter);
 app.use("/organisation", organisationRouter);
 
-app.listen(3000, () => {
+app.listen(5000, () => {
   console.log("Server is running on port 3000");
 });
