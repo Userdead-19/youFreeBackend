@@ -6,6 +6,7 @@ const {
   GetAllMeetings,
   UpdateMeeting,
   DeleteMeeting,
+  getUserMeeting,
 } = require("../Controllers/MeetingFunctions");
 
 Router.post("/createMeeting", CreateMeeting);
@@ -17,6 +18,8 @@ Router.get("/getMeetings", GetAllMeetings);
 Router.put("/updateMeeting/:meetingName", UpdateMeeting);
 
 Router.delete("/deleteMeeting/:meetingName", DeleteMeeting);
+
+Router.get("/getUserMeetings/:userId", getUserMeeting);
 
 module.exports = Router;
 // Path: routes/UserRoutes.js

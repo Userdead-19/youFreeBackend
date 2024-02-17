@@ -12,6 +12,7 @@ const CreateMeeting = async (req, res) => {
       MeetingCreator: req.body.MeetingCreator,
       MeetingTimeZone: req.body.MeetingTimeZone,
       MeetingLink: req.body.MeetingLink,
+      OraganisationName: req.body.OraganisationName,
     });
     for (let i = 0; i < req.body.MeetingMembers.length; i++) {
       await userSchema.findOneAndUpdate(
@@ -83,10 +84,21 @@ const DeleteMeeting = async (req, res) => {
   }
 };
 
+const getUserMeeting = async (req, res) => {
+  try {
+    const { userid } = req.params;
+    const userMeetings = await meetingSchema.find({ MeetingMembers: userid });
+    res.json(userMeetings);
+  } catch (error) {
+    res.status(400).send(error);
+  }
+};
+
 module.exports = {
   CreateMeeting,
   GetMeeting,
   GetAllMeetings,
   UpdateMeeting,
   DeleteMeeting,
+  getUserMeeting,
 };

@@ -37,6 +37,10 @@ const meetingSchema = new mongoose.Schema(
       required: true,
       default: "Yet to Start",
     },
+    OraganisationName: {
+      type: String,
+      required: true,
+    },
   },
   {
     timestamps: true,
