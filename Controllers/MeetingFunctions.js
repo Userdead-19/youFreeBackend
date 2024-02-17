@@ -1,3 +1,4 @@
+const { default: axios } = require("axios");
 const meetingSchema = require("../models/MeetingModal");
 const userSchema = require("../models/UserModal");
 const CreateMeeting = async (req, res) => {
@@ -93,6 +94,45 @@ const getUserMeeting = async (req, res) => {
     res.json(userMeetings);
   } catch (error) {
     res.status(400).send(error);
+  }
+};
+
+const getMeetingTime = async (req, res) => {
+  try {
+    const { meetingId } = req.params;
+    const MeetingMembers = await meetingSchema.find({ _id: meetingId });
+    let userCalendars = [];
+    for (let i = 0; i < MeetingMembers.length; i++) {
+      const user = await userSchema.findOne({ _id: MeetingMembers[i] });
+      userCalendars.push(user.calenderId);
+    }
+    const body = {
+      start: req.body.start,
+      end: req.body.end,
+      timezone: req.body.timezone,
+      calendar_ids: userCalendars,
+    };
+    axios
+      .get("htps://youfreeBackend.onrender.com/specific-date", { params: body })
+      .then((response) => {
+        meetingSchema
+          .findOneAndUpdate(
+            { _id: meetingId },
+            { $set: { MeetingTime: response.data } }
+          )
+          .then((res) => {
+            res.json(res);
+          })
+          .catch((err) => {
+            res.status(400).send(err);
+          });
+      })
+      .catch((err) => {
+        res.status(500).send(err);
+      });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send(error);
   }
 };
 
