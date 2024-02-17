@@ -92,11 +92,14 @@ const getUserMeeting = async (req, res) => {
   try {
     const { userid } = req.params;
     const user = await userSchema.findOne({ _id: userid });
+    console.log(user);
     let meetings = [];
+
     for (let i = 0; i < user.MeetingAlloted.length; i++) {
       const meeting = await meetingSchema.findOne({
         _id: user.MeetingAlloted[i],
       });
+      console.log(meeting);
       meetings.push(meeting);
     }
     res.json(meetings);
