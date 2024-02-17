@@ -67,6 +67,7 @@ const getUserOrganisations = async (req, res) => {
 };
 
 module.exports = {
+  getUserOrganisations,
   CreateOrganisation,
   GetOrganisation,
   GetOrganisationMembers,

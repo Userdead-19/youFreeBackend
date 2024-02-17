@@ -3,6 +3,7 @@ const Router = require("express").Router();
 const {
   CreateOrganisation,
   GetOrganisation,
+  getUserOrganisations,
   GetOrganisationMembers,
   updateOrganisationMembers,
 } = require("../Controllers/OrganisationFunction");
@@ -13,7 +14,7 @@ Router.get("/getOrganisation/:organisationName", GetOrganisation);
 
 Router.get("/getOrganisationMembers/:organisationName", GetOrganisationMembers);
 
-Router.get("/getUserOrganisations/:userId", GetOrganisationMembers);
+Router.get("/getUserOrganisations/:userId", getUserOrganisations);
 
 Router.get(
   "/updateOrganisationMembers/:organisationName",
