@@ -35,4 +35,21 @@ const GetAllUsers = async (req, res) => {
   }
 };
 
+const LoginUser = async (req, res) => {
+  try {
+    const { username, password } = req.body;
+    userSchema
+      .findOne({ username: username, password: password })
+      .then((user) => {
+        if (user) {
+          res.status(200).json({ userid: user._id, username: user.username });
+        } else {
+          res.status(400).send("User not found");
+        }
+      });
+  } catch (error) {
+    res.status(500).send(error);
+  }
+};
+
 module.exports = { CreateUser, GetUser, GetAllUsers };
