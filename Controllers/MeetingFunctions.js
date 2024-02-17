@@ -91,7 +91,7 @@ const DeleteMeeting = async (req, res) => {
 const getUserMeeting = async (req, res) => {
   try {
     const { userid } = req.params;
-    const meetings = await Meeting.find({ MeetingMembers: userid });
+    const meetings = await meetingSchema.find({ MeetingMembers: userid });
     res.json(meetings);
   } catch (error) {
     res.status(400).send(error);
